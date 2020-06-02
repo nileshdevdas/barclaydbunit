@@ -39,22 +39,6 @@
 			--- AFTER SHUTDOWN 
 		END; 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
 	END MYUT_TUTORIAL 
 
 5. 
