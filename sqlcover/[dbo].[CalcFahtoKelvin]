@@ -1,0 +1,9 @@
+CREATE   FUNCTION [dbo].[CalcFahtoKelvin](@Fah AS FLOAT) RETURNS FLOAT
+AS
+BEGIN
+DECLARE @Kel AS FLOAT
+SELECT @Kel = ROUND(((@Fah+ 459.67)*5)/9,2)
+RETURN @Kel
+
+END
+
