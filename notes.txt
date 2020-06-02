@@ -1,0 +1,46 @@
+1.  utPLSQL was installed 
+2.  tools /toad  (No installation) 
+	 or
+3.  SQLDeveloper Oracle (Extension):-
+4.  test case 
+	CREATE OR REPLACE  PACKAGE  MYUT_TUTORIAL AS 
+		--%suite (name of the suite)
+		--%test(name of the test)		
+		--%beforetest(proceduretocall)
+		--%aftertest(proceduretocall)
+		PROCEDURE  DEMO_TEST;   -- this your test which will be execute 
+		PROCEDURE  BEFORE_TEST; 
+		PROCEDURE  AFTER_TEST; 
+	END MYUT_TUTORIAL 
+
+	CREATE OR REPLACE  PACKAGE  BODY MYUT_TUTORIAL AS 
+		PROCEDURE  DEMO_TEST AS 
+		AS
+		VALUE_EXPECTED NUMBER := 10929393;
+		VALUE_ACTUAL NUMBER:= 0;
+		BEGIN 
+			--call the code under test
+			VALUE_ACTUAL  =  X2.avg_sales(1993);
+			--what if they are equal --- test cases is passed 
+			-- what if they are not equal --- test case i failed 
+			ut.expect(VALUE_EXPECTED).to_equal(VALUE_ACTUAL);
+			-- where your test code code 
+		END;
+
+		PROCECDURE BEFORE_TEST AS   -- setup 
+		BEGIN 
+			--- PREPARE PHASE 
+			--- PREPARE OF INTIALIZATION 
+		END; 
+	
+		PROCECDURE AFTER_TEST AS    -- teardown 
+		BEGIN 
+			--- AFTER PHASE 
+			--- AFTER SHUTDOWN 
+		END; 
+
+
+		
+	END MYUT_TUTORIAL 
+
+5. 
