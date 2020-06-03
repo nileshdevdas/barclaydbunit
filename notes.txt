@@ -1,44 +1,52 @@
-1.  utPLSQL was installed 
-2.  tools /toad  (No installation) 
-	 or
-3.  SQLDeveloper Oracle (Extension):-
-4.  test case 
-	CREATE OR REPLACE  PACKAGE  MYUT_TUTORIAL AS 
-		--%suite (name of the suite)
-		--%test(name of the test)		
-		--%beforetest(proceduretocall)
-		--%aftertest(proceduretocall)
-		PROCEDURE  DEMO_TEST;   -- this your test which will be execute 
-		PROCEDURE  BEFORE_TEST; 
-		PROCEDURE  AFTER_TEST; 
-	END MYUT_TUTORIAL 
+1.  SQLServer 
+a)  Intstall any version of SQL Server 
+b)  Install Apex Tools (Optional)
+c)  Install tSQLT 
+d)  download SQLCover/Engine 
+e)  Create TestClass 
+f)   Create TestMethod 
+g)  Create Code Under Test 
+h)  Run the Test using The Unit Test Browser tSQLt.runALL
+i)   You will need to run the SQLCOver --> https://github.com/nileshdevdas/barclaydbunit/sqlcover 
+	*** :The Username , The Hostname , The Password of the databse and Catalog name 
+	     to be changed to the desired once 
+j)  run the coverage report 
+	powershell .\RunSQLCoverHTML.ps1  -=. html or xml report 
 
-	CREATE OR REPLACE  PACKAGE  BODY MYUT_TUTORIAL AS 
-		PROCEDURE  DEMO_TEST AS 
-		AS
-		VALUE_EXPECTED NUMBER := 10929393;
-		VALUE_ACTUAL NUMBER:= 0;
-		BEGIN 
-			--call the code under test
-			VALUE_ACTUAL  =  X2.avg_sales(1993);
-			--what if they are equal --- test cases is passed 
-			-- what if they are not equal --- test case i failed 
-			ut.expect(VALUE_EXPECTED).to_equal(VALUE_ACTUAL);
-			-- where your test code code 
-		END;
+================================================================================
+k) Preparing the sonar qube 
+	is it a community edition ? if yes 
+	sonar-sql-plugin-1.0.5.jar(for the TSQL) 
+	sonar-plsql-cop-plugin-6.7.0.4.jar (PL/SQL) 
+	%SONAR_QUBE_HOME%\exetensions\plugins
+	Restart your Sonar Qube 
 
-		PROCECDURE BEFORE_TEST AS   -- setup 
-		BEGIN 
-			--- PREPARE PHASE 
-			--- PREPARE OF INTIALIZATION 
-		END; 
+
+	if it is  a developer edition then no worries -> T-SQL , PL/SQL 
+
+	Cloud You code PL/SQL -> sonarcloud.io
+
+	prepare you analysis folder --> 
+	prepare you workspace where you will run your sonar-scanner:- 
+	MyProject 
+		|----src
+		      |----- .sql, fnc, prc, pkb, pks, trg 
+		|---reports
+		     |------ html .xml .jacoco .cob
+
+you need to create a new project in your sonarqube for analysis 		      
+1.  Static Code
+2. Issue Analysis 
+3. Security Analysis 
+4. Coverage report (but not analysis) 
+5. Governance 
+6. Branch and Pull bases analysis (** if Developer and above) 
+7. Debts, Cleanups , And Referential  Comparison with industry practice  
+
+
+sonar-scanner.bat -Dsonar.projectKey=xxxxxxxxx -Dsonar.sources=. -Dsonar.host.url=http://localhost:9000 -Dsonar.login=d905bc487511c75cbe32c38d15674e7c634559b9
 	
-		PROCECDURE AFTER_TEST AS    -- teardown 
-		BEGIN 
-			--- AFTER PHASE 
-			--- AFTER SHUTDOWN 
-		END; 
 
-	END MYUT_TUTORIAL 
 
-5. 
+
+
